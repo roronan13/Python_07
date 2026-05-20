@@ -1,2 +1,2 @@
-from .factories import FlameFactory, AquaFactory
+from .factories import CreatureFactory, FlameFactory, AquaFactory
 
