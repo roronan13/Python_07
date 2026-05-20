@@ -8,15 +8,17 @@ def create_creature(factory: ex0.CreatureFactory) -> None:
         creature_1 = factory.create_base()
     except Exception as e:
         print(f"{e}")
+        return
     try:
         creature_2 = factory.create_evolved()
     except Exception as e:
         print(f"{e}")
+        return
 
-    print(f"{creature_1.ex0.describe()}")
-    print(f"{creature_1.ex0.attack()}")
-    print(f"{creature_2.ex0.describe()}")
-    print(f"{creature_2.ex0.attack()}")
+    print(f"{creature_1.describe()}")
+    print(f"{creature_1.attack()}")
+    print(f"{creature_2.describe()}")
+    print(f"{creature_2.attack()}")
 
 
 def base_battle(aqua_factory: ex0.AquaFactory, flame_factory: ex0.FlameFactory) -> None:
@@ -29,8 +31,8 @@ def base_battle(aqua_factory: ex0.AquaFactory, flame_factory: ex0.FlameFactory) 
     print("   VS   ")
     print(f"{creature_2.describe()}")
     print("   FIGHT !   ")
-    creature_1.ex0.attack()
-    creature_2.ex0.attack()
+    print(f"{creature_1.attack()}")
+    print(f"{creature_2.attack()}")
 
 
 if __name__ == "__main__":
