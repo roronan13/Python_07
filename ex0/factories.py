@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import creatures
 
 
 class CreatureFactory(ABC):
@@ -13,15 +14,15 @@ class CreatureFactory(ABC):
 
 class FlameFactory(CreatureFactory):
     def create_base():
-        pass
+        return (creatures.Flameling())
 
     def create_evolved():
-        pass
+        return (creatures.Pyrodon())
 
 
 class AquaFactory(CreatureFactory):
     def create_base():
-        pass
+        return (creatures.Aquabub())
 
     def create_evolved():
-        pass
+        return (creatures.Torragon())
