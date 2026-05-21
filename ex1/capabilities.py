@@ -10,8 +10,8 @@ class HealCapability(ABC):
 class TransformCapability(ABC):
     @abstractmethod
     def transform(self) -> str:
-        return ("")
+        return ("No transform available")
 
     @abstractmethod
     def revert(self) -> str:
-        return ("")
+        return ("No revert available")
