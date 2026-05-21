@@ -8,6 +8,11 @@ class HealCapability(ABC):
 
 
 class TransformCapability(ABC):
+    def __init__(self, name: str, type: str):
+        self.name = name
+        self.type = type
+        self.transformed: bool = False
+
     @abstractmethod
     def transform(self) -> str:
         return ("No transform available")

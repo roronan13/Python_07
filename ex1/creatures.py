@@ -26,8 +26,7 @@ class Bloomelle(Creature, HealCapability):
 
 class Shiftling(Creature, TransformCapability):
     def __init__(self):
-        super().__init__("Shiftling", "Normal")
-        self.transformed: bool = False
+        TransformCapability.__init__(self, "Shiftling", "Normal")
 
     def attack(self) -> str:
         if not self.transformed:
@@ -46,8 +45,7 @@ class Shiftling(Creature, TransformCapability):
 
 class Morphagon(Creature, TransformCapability):
     def __init__(self):
-        super().__init__("Morphagon", "Normal/Dragon")
-        self.transformed: bool = False
+        TransformCapability.__init__(self, "Morphagon", "Normal/Dragon")
 
     def attack(self) -> str:
         if not self.transformed:
