@@ -21,7 +21,8 @@ def create_creature(factory: ex0.CreatureFactory) -> None:
     print(f"{creature_2.attack()}")
 
 
-def base_battle(aqua_factory: ex0.AquaFactory, flame_factory: ex0.FlameFactory) -> None:
+def base_battle(aqua_factory: ex0.AquaFactory,
+                flame_factory: ex0.FlameFactory) -> None:
     print("\nTESTING BATTLE")
 
     creature_1 = aqua_factory.create_base()

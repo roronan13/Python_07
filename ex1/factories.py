@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from ex0.factories import CreatureFactory
 from .creatures import Creature, Sproutling, Bloomelle, Shiftling, Morphagon
 
