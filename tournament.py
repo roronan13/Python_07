@@ -10,7 +10,7 @@ def battle(opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]])\
     for i in range(len(opponents)):
         for j in range(i + 1, len(opponents)):
 
-            print(" - BATTLE - ")
+            print(" - BATTLE - \n")
 
             opponent_1 = opponents[i][0]
             opponent_2 = opponents[j][0]
@@ -21,8 +21,18 @@ def battle(opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]])\
             print("   VS   ")
             print(f"{opponent_2.describe()}")
             print("   FIGHT !   ")
-            print(f"{opponent_1.strategy_1.act()}")
-            print(f"{opponent_2.strategy_2.act()}")
+
+            try:
+                strategy_1.act(opponent_1)
+            except ex2.StrategyError as err:
+                print(f"Battle error, aborting tournament : {err}")
+                return
+
+            try:
+                strategy_2.act(opponent_2)
+            except ex2.StrategyError as err:
+                print(f"Battle error, aborting tournament : {err}")
+                return
 
 
 if __name__ == "__main__":
@@ -39,5 +49,20 @@ if __name__ == "__main__":
     creature_1 = flame_factory.create_base()
     creature_2 = healing_factory.create_base()
     print(f"[ ({creature_1.name} + Normal), (Healing + Defensive) ]")
-    print("*** Tournament ***")
+    print("\n   *** Tournament ***   ")
     battle([(creature_1, normal_strategy), (creature_2, defensive_strategy)])
+
+    print("\n\n   TOURNAMENT 1 (error)  ")
+    creature_1 = flame_factory.create_base()
+    creature_2 = healing_factory.create_base()
+    print(f"[ ({creature_1.name} + Aggressive), (Healing + Defensive) ]")
+    print("\n   *** Tournament ***   ")
+    battle([(creature_1, aggressive_strategy), (creature_2, defensive_strategy)])
+
+    print("\n\n   TOURNAMENT 2 (multiple)  ")
+    creature_1 = aqua_factory.create_base()
+    creature_2 = healing_factory.create_base()
+    creature_3 = transform_factory.create_base()
+    print(f"[ ({creature_1.name} + Normal), (Healing + Defensive), (Transform + Aggressive) ]")
+    print("\n   *** Tournament ***   ")
+    battle([(creature_1, normal_strategy), (creature_2, defensive_strategy), (creature_3, aggressive_strategy)])

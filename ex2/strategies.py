@@ -3,11 +3,15 @@ from ex0.creatures import Creature
 from ex1 import capabilities
 
 
+class StrategyError(Exception):
+    def __init__(self, error_message: str = "Unknown strategy error."):
+        super().__init__(error_message)
+
+
 class BattleStrategy(ABC):
     @abstractmethod
     def act(self, creature: Creature) -> None:
         print("No action available")
-        return
 
     @abstractmethod
     def is_valid(self, creature: Creature) -> bool:
@@ -15,39 +19,36 @@ class BattleStrategy(ABC):
 
 
 class NormalStrategy(BattleStrategy):
-    def act(self, creature: Creature) -> None:
-        print(creature.attack())
-
     def is_valid(self, creature: Creature) -> bool:
         return (isinstance(creature, Creature))
 
+    def act(self, creature: Creature) -> None:
+        if self.is_valid(creature):
+            print(creature.attack())
+        else:
+            raise StrategyError(f"{creature.name} can't attack ..")
+
 
 class AggressiveStrategy(BattleStrategy):
-    def act(self, creature: Creature) -> None:
-        try:
-            print(creature.transform())
-        except Exception as e:
-            print(f"{e} (This creature can't transform ..\n)")
-            return
-        print(creature.attack())
-        try:
-            print(creature.revert())
-        except Exception as e:
-            print(f"{e} (This creature can't revert ..\n)")
-            return
-
     def is_valid(self, creature: Creature) -> bool:
         return (isinstance(creature, capabilities.TransformCapability))
 
+    def act(self, creature: Creature) -> None:
+        if self.is_valid(creature):
+            print(creature.transform())
+            print(creature.attack())
+            print(creature.revert())
+        else:
+            raise StrategyError(f"{creature.name} can't transform and revert ..")
+
 
 class DefensiveStrategy(BattleStrategy):
-    def act(self, creature: Creature) -> None:
-        print(creature.attack())
-        try:
-            print(creature.heal())
-        except Exception as e:
-            print(f"{e} (This creature can't heal ..\n)")
-            return
-
     def is_valid(self, creature: Creature) -> bool:
         return (isinstance(creature, capabilities.HealCapability))
+
+    def act(self, creature: Creature) -> None:
+        if self.is_valid(creature):
+            print(creature.attack())
+            print(creature.heal())
+        else:
+            raise StrategyError(f"{creature.name} can't heal ..")
