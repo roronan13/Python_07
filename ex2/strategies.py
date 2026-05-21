@@ -23,9 +23,17 @@ class NormalStrategy(BattleStrategy):
 
 class AggressiveStrategy(BattleStrategy):
     def act(self) -> str:
-        print(self.transform())
+        try:
+            print(self.transform())
+        except Exception as e:
+            print(f"{e} (This creature can't transform ..\n)")
+            return
         print(self.attack())
-        print(self.revert())
+        try:
+            print(self.revert())
+        except Exception as e:
+            print(f"{e} (This creature can't revert ..\n)")
+            return
 
     def is_valid(self) -> bool:
         return (isinstance(self, capabilities.TransformCapability))
@@ -34,9 +42,10 @@ class AggressiveStrategy(BattleStrategy):
 class DefensiveStrategy(BattleStrategy):
     def act(self) -> str:
         print(self.attack())
-        print(self.heal())
+        try:
+            print(self.heal())
+        except Exception as e:
+            print(f"{e} (This creature can't heal ..\n)")
 
     def is_valid(self) -> bool:
         return (isinstance(self, capabilities.HealCapability))
-
-
