@@ -6,8 +6,13 @@ def action_for_healing(creature) -> None:
     print(f"{creature.attack()}")
     print(f"{creature.heal()}")
 
-def action_for_transforming(creature) -> None:
 
+def action_for_transforming(creature) -> None:
+    print(f"{creature.describe()}")
+    print(f"{creature.attack()}")
+    print(f"{creature.transform()}")
+    print(f"{creature.attack()}")
+    print(f"{creature.revert()}")
 
 
 if __name__ == "__main__":
@@ -23,6 +28,10 @@ if __name__ == "__main__":
 
     transforming_factory = ex1.TransformCreatureFactory()
 
-    print("   TESTING CREATURE WITH TRANSFORMING CAPABILITY   ")
+    print("\n   TESTING CREATURE WITH TRANSFORMING CAPABILITY   ")
     print(" -- base : ")
     shiftling = transforming_factory.create_base()
+    action_for_transforming(shiftling)
+    print(" -- evolved : ")
+    morphagon = transforming_factory.create_evolved()
+    action_for_transforming(morphagon)
