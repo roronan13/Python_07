@@ -11,7 +11,7 @@ def battle(opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]])\
         for j in range(i + 1, len(opponents)):
 
             print(" - BATTLE - ")
-            
+
             opponent_1 = opponents[i][0]
             opponent_2 = opponents[j][0]
             strategy_1 = opponents[i][1]

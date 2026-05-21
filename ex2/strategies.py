@@ -5,47 +5,49 @@ from ex1 import capabilities
 
 class BattleStrategy(ABC):
     @abstractmethod
-    def act(self) -> str:
-        return ("No action available")
+    def act(self, creature: Creature) -> None:
+        print("No action available")
+        return
 
     @abstractmethod
-    def is_valid(self) -> bool:
+    def is_valid(self, creature: Creature) -> bool:
         return False
 
 
 class NormalStrategy(BattleStrategy):
-    def act(self) -> str:
-        print(self.attack())
+    def act(self, creature: Creature) -> None:
+        print(creature.attack())
 
-    def is_valid(self) -> bool:
-        return (isinstance(self, Creature))
+    def is_valid(self, creature: Creature) -> bool:
+        return (isinstance(creature, Creature))
 
 
 class AggressiveStrategy(BattleStrategy):
-    def act(self) -> str:
+    def act(self, creature: Creature) -> None:
         try:
-            print(self.transform())
+            print(creature.transform())
         except Exception as e:
             print(f"{e} (This creature can't transform ..\n)")
             return
-        print(self.attack())
+        print(creature.attack())
         try:
-            print(self.revert())
+            print(creature.revert())
         except Exception as e:
             print(f"{e} (This creature can't revert ..\n)")
             return
 
-    def is_valid(self) -> bool:
-        return (isinstance(self, capabilities.TransformCapability))
+    def is_valid(self, creature: Creature) -> bool:
+        return (isinstance(creature, capabilities.TransformCapability))
 
 
 class DefensiveStrategy(BattleStrategy):
-    def act(self) -> str:
-        print(self.attack())
+    def act(self, creature: Creature) -> None:
+        print(creature.attack())
         try:
-            print(self.heal())
+            print(creature.heal())
         except Exception as e:
             print(f"{e} (This creature can't heal ..\n)")
+            return
 
-    def is_valid(self) -> bool:
-        return (isinstance(self, capabilities.HealCapability))
+    def is_valid(self, creature: Creature) -> bool:
+        return (isinstance(creature, capabilities.HealCapability))
