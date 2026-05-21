@@ -11,7 +11,7 @@ class Creature(ABC):
         return ("No attack available")
 
     def describe(self) -> str:
-        return (f"creature {self.name} which is type {self.type}")
+        return (f"Creature {self.name} which is type {self.type}")
 
 
 class Flameling(Creature):
