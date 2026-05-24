@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from ex0.creatures import Creature
 from ex1 import capabilities
+from typing import cast
 
 
 class StrategyError(Exception):
@@ -31,13 +32,19 @@ class NormalStrategy(BattleStrategy):
 
 class AggressiveStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
+        # if isinstance(creature, capabilities.TransformCapability):
+        #     return True
+        # else:
+        #     return False
         return (isinstance(creature, capabilities.TransformCapability))
 
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature):
-            print(creature.transform())
+            casted_creature = cast(capabilities.TransformCapability, creature)
+
+            print(casted_creature.transform())
             print(creature.attack())
-            print(creature.revert())
+            print(casted_creature.revert())
         else:
             raise StrategyError(f"{creature.name} can't transform and revert ..")
 
@@ -48,7 +55,9 @@ class DefensiveStrategy(BattleStrategy):
 
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature):
+            casted_creature = cast(capabilities.HealCapability, creature)
+
             print(creature.attack())
-            print(creature.heal())
+            print(casted_creature.heal())
         else:
             raise StrategyError(f"{creature.name} can't heal ..")

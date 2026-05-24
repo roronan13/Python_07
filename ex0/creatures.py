@@ -13,6 +13,18 @@ class Creature(ABC):
     def describe(self) -> str:
         return (f"Creature {self.name} which is type {self.type}")
 
+    # @abstractmethod
+    # def heal(self) -> str:
+    #     return ("No heal available")
+
+    # @abstractmethod
+    # def transform(self) -> str:
+    #     return ("No transform available")
+
+    # @abstractmethod
+    # def revert(self) -> str:
+    #     return ("No revert available")
+
 
 class Flameling(Creature):
     def __init__(self):
