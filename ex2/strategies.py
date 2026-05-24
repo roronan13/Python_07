@@ -46,7 +46,8 @@ class AggressiveStrategy(BattleStrategy):
             print(creature.attack())
             print(casted_creature.revert())
         else:
-            raise StrategyError(f"{creature.name} can't transform and revert ..")
+            raise StrategyError(f"{creature.name} can't\
+transform and revert ..")
 
 
 class DefensiveStrategy(BattleStrategy):
