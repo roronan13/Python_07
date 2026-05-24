@@ -12,8 +12,11 @@ def battle(opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]])\
 
             print(" - BATTLE - \n")
 
-            opponent_1 = opponents[i][0]
-            opponent_2 = opponents[j][0]
+            factory_1 = opponents[i][0]
+            factory_2 = opponents[j][0]
+            opponent_1 = factory_1.create_base()
+            opponent_2 = factory_2.create_base()
+
             strategy_1 = opponents[i][1]
             strategy_2 = opponents[j][1]
 
@@ -46,23 +49,23 @@ if __name__ == "__main__":
     defensive_strategy = ex2.DefensiveStrategy()
 
     print("   TOURNAMENT 0 (basic)  ")
-    creature_1 = flame_factory.create_base()
-    creature_2 = healing_factory.create_base()
-    print(f"[ ({creature_1.name} + Normal), (Healing + Defensive) ]")
+    # creature_1 = flame_factory.create_base()
+    # creature_2 = healing_factory.create_base()
+    print("[ (Flameling + Normal), (Healing + Defensive) ]")
     print("\n   *** Tournament ***   ")
-    battle([(creature_1, normal_strategy), (creature_2, defensive_strategy)])
+    battle([(flame_factory, normal_strategy), (healing_factory, defensive_strategy)])
 
     print("\n\n   TOURNAMENT 1 (error)  ")
-    creature_1 = flame_factory.create_base()
-    creature_2 = healing_factory.create_base()
-    print(f"[ ({creature_1.name} + Aggressive), (Healing + Defensive) ]")
+    # creature_1 = flame_factory.create_base()
+    # creature_2 = healing_factory.create_base()
+    print("[ (Flameling + Aggressive), (Healing + Defensive) ]")
     print("\n   *** Tournament ***   ")
-    battle([(creature_1, aggressive_strategy), (creature_2, defensive_strategy)])
+    battle([(flame_factory, aggressive_strategy), (healing_factory, defensive_strategy)])
 
     print("\n\n   TOURNAMENT 2 (multiple)  ")
-    creature_1 = aqua_factory.create_base()
-    creature_2 = healing_factory.create_base()
-    creature_3 = transform_factory.create_base()
-    print(f"[ ({creature_1.name} + Normal), (Healing + Defensive), (Transform + Aggressive) ]")
+    # creature_1 = aqua_factory.create_base()
+    # creature_2 = healing_factory.create_base()
+    # creature_3 = transform_factory.create_base()
+    print("[ (Aquabub + Normal), (Healing + Defensive), (Transform + Aggressive) ]")
     print("\n   *** Tournament ***   ")
-    battle([(creature_1, normal_strategy), (creature_2, defensive_strategy), (creature_3, aggressive_strategy)])
+    battle([(aqua_factory, normal_strategy), (healing_factory, defensive_strategy), (transform_factory, aggressive_strategy)])
