@@ -10,7 +10,7 @@ def battle(opponents: list[tuple[ex0.CreatureFactory, ex2.BattleStrategy]])\
     for i in range(len(opponents)):
         for j in range(i + 1, len(opponents)):
 
-            print(" - BATTLE - \n")
+            print("\n - BATTLE - ")
 
             factory_1 = opponents[i][0]
             factory_2 = opponents[j][0]
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     battle([(flame_factory, normal_strategy),
             (healing_factory, defensive_strategy)])
 
-    print("\n\n   TOURNAMENT 1 (error)  ")
+    print("\n\n\n   TOURNAMENT 1 (error)  ")
     # creature_1 = flame_factory.create_base()
     # creature_2 = healing_factory.create_base()
     print("[ (Flameling + Aggressive), (Healing + Defensive) ]")
@@ -64,11 +64,11 @@ if __name__ == "__main__":
     battle([(flame_factory, aggressive_strategy),
             (healing_factory, defensive_strategy)])
 
-    print("\n\n   TOURNAMENT 2 (multiple)  ")
+    print("\n\n\n   TOURNAMENT 2 (multiple)  ")
     # creature_1 = aqua_factory.create_base()
     # creature_2 = healing_factory.create_base()
     # creature_3 = transform_factory.create_base()
-    print("[ (Aquabub + Normal), (Healing + Defensive),\
+    print("[ (Aquabub + Normal), (Healing + Defensive), \
 (Transform + Aggressive) ]")
     print("\n   *** Tournament ***   ")
     battle([(aqua_factory, normal_strategy),
